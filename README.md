@@ -88,3 +88,7 @@ The repository includes code for both physical robot operation and simulation:
 - G-Mapping
 - AMCL
 - TurtleBot3
+
+### Further Notes
+
+*This project was created for the Final Project in the WPI course RBE3002 Unified Robotics IV as taught by Professor Vincent Aloi in B Term of the 2024 school year. This code was created by Shivangi Sirsiwal, Lauren Harrison, Katy Stuparu, and Ben Pollard as a part of project group 3.*
