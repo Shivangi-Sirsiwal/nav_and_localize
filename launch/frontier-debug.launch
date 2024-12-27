@@ -1,0 +1,18 @@
+<launch>
+    <!-- Launch the Gazebo RViz visualization -->
+    <node type="rviz" name="rviz" pkg="rviz" args="-d $(find lab3)/rviz/rbe3002_lab3_3.rviz" />
+
+    <!-- Launch the map server -->
+    <node type="map_server" name="map_server" pkg="map_server" args="$(find lab3)/maps/cspace.yaml" />
+
+    <!-- Launch the tf transform publisher -->
+    <node type="static_transform_publisher" name="static_transform_publisher" pkg="tf" args="0 0 0 0 0 0 /map /odom 100" />
+
+    <!-- Launch the path_planner.py script -->
+    <node name="lab3" pkg="lab3" type="path_planner.py" output="screen" />
+
+    <!-- Launch the path_client.py script -->
+    <node name="path_client" pkg="lab3" type="path_client.py" output="screen" />
+
+    <node pkg="lab3" type="exploration.py" name="exploration" output="screen" />
+</launch>

@@ -1,0 +1,45 @@
+    <launch>
+
+        <!-- Argument definitions -->
+        <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="Turtlebot3 model type [burger, waffle, waffle_pi]" />
+        <arg name="x_pos" default="0.0" />
+        <arg name="y_pos" default="0.0" />
+        <arg name="z_pos" default="0.0" />
+
+        <!-- Load the robot description -->
+        <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro" />
+
+        <!-- Launch RViz with a custom configuration -->
+        <node pkg="rviz" type="rviz" name="rviz" required="true"
+            args="-d $(find lab3)/rviz/watch_the_robot_move.rviz" />
+
+        <!-- Launch the map server -->
+        <!-- Publish a static transform -->
+        <node pkg="tf" type="static_transform_publisher" name="cspace_map_transform"
+            args="0 0 0 0 0 0 /map /cspace 100" />
+        <node pkg="tf" type="static_transform_publisher" name="gradient_map_transform"
+            args="0 0 0 0 0 0 /map /gradient 100" />
+
+        <node pkg="lab3" type="cspace_calc.py" name="cspace_calc" output="screen" />
+        
+        <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen" args="/base_scan"> 
+        <param name="map_update_interval" value="4.0"/>
+        <param name="xmin" value="-5.0"/>
+        <param name="xmax" value="5.0"/>
+        <param name="ymin" value="-5.0"/>
+        <param name="ymax" value="5.0"/>
+        <param name="delta" value="0.02"/>
+        </node> 
+        
+        <!-- Path planner script -->
+        <node pkg="lab3" type="path_planner.py" name="path_planner" output="screen" />
+
+        <!-- Path client script (publishes odometry and TFs) -->
+        <node pkg="lab3" type="path_client.py" name="path_client" output="screen" />
+        
+        <!-- Ensure joint states are published -->
+        <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+            <param name="use_sim_time" value="true" />
+        </node>
+        <node pkg="lab3" type="exploration.py" name="exploration" output="screen" />
+    </launch>
