@@ -43,7 +43,7 @@ The repository includes code for both physical robot operation and simulation:
 ## Implementation Results
 
 ### G-Mapping Results
-<img src="https://github.com/user-attachments/assets/5b381e42-cf42-40be-98c3-b0a6a5a4f25f", width = 600>
+<img src="https://github.com/user-attachments/assets/5b381e42-cf42-40be-98c3-b0a6a5a4f25f" width = 600>
 *Figure 1: The completed G-Mapping map of the maze*
 
 ### Path Planning Visualization
