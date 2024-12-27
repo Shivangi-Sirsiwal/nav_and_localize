@@ -48,7 +48,7 @@ The repository includes code for both physical robot operation and simulation:
 *Figure 1: The completed G-Mapping map of the maze*
 
 ### Path Planning Visualization
-<img src="https://github.com/user-attachments/assets/4b3162b5-4cc0-442b-b943-a15b41209d5d" width = 600>
+<img src="https://github.com/user-attachments/assets/4b3162b5-4cc0-442b-b943-a15b41209d5d" width = 800>
 
 *Figures 2 & 3: The A-Star path, C-Space, and C-Space gradient with the robot path following*
 
